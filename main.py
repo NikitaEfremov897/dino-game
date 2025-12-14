@@ -210,4 +210,20 @@ def save_highscore(score):
         start_btn = draw_button("Начать игру", WIDTH // 2 - 100, HEIGHT // 2, 200, 60, game.font)
         records_btn = draw_button("Рекорды", WIDTH // 2 - 100, HEIGHT // 2 + 80, 200, 60, game.font)
 
-        pygame.display.flip()                      
+        pygame.display.flip()
+
+            for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                return
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if start_btn.collidepoint(event.pos):
+                    score = game.run()
+                    if score > highscore:
+                        highscore = score
+                        save_highscore(highscore)
+                    if not game_over_menu(score, highscore, game.font, game.font_large):
+                        return
+                    game.reset_game()
+                if records_btn.collidepoint(event.pos):
+                    show_records(highscore, game.font, game.font_large)                      
