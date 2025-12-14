@@ -19,3 +19,22 @@ JUMP_DISTANCE_MAX = 30
 # Создание окна
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Dino")
+def load_image(name, size=None):
+    image = pygame.image.load(name)
+    if size:
+        image = pygame.transform.scale(image, size)
+    return image.convert_alpha() if name.endswith('.png') else image.convert()
+
+
+def draw_text(text, x, y, font, color=BLACK):
+    label = font.render(text, True, color)
+    screen.blit(label, (x, y))
+
+
+def draw_button(text, x, y, width, height, font):
+    rect = pygame.Rect(x, y, width, height)
+    pygame.draw.rect(screen, BLACK, rect, 2)
+    label = font.render(text, True, BLACK)
+    text_rect = label.get_rect(center=(x + width // 2, y + height // 2))
+    screen.blit(label, text_rect)
+    return rect
