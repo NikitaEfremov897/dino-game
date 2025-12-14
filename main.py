@@ -261,4 +261,6 @@ def save_highscore(score):
             if event.type == pygame.QUIT:
                 return
             if event.type == pygame.MOUSEBUTTONDOWN and back_btn.collidepoint(event.pos):
-                return                      
+                return 
+            if __name__ == "__main__":
+            main_menu()                     
