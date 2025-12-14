@@ -114,4 +114,29 @@ def save_highscore(score):
                     self.auto_jump = not self.auto_jump
                 if event.key == pygame.K_p:  # Пауза
                     self.paused = not self.paused
-        return True                       
+        return True
+
+            def update(self):
+        if self.paused:
+            return True
+
+        if self.auto_jump and self.should_jump() and self.dino.y >= GROUND_Y - DINO_HEIGHT:
+            if self.on_ground:
+                self.velocity = self.jump_power
+                self.on_ground = False
+            elif not self.double_jump_used:
+                self.velocity = self.jump_power
+                self.double_jump_used = True
+
+        self.velocity += self.gravity
+        self.dino.y += self.velocity
+
+        if self.dino.y >= GROUND_Y - DINO_HEIGHT:
+            self.dino.y = GROUND_Y - DINO_HEIGHT
+            self.velocity = 0
+            self.on_ground = True
+            self.double_jump_used = False
+
+        for group in self.obstacles:
+            for cactus in group:
+                cactus.x -= self.speed                       
