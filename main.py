@@ -139,4 +139,18 @@ def save_highscore(score):
 
         for group in self.obstacles:
             for cactus in group:
-                cactus.x -= self.speed                       
+                cactus.x -= self.speed
+
+                if self.obstacles[-1][0].x < WIDTH - self.next_cactus_distance:
+            group = self.generate_obstacles()
+            self.obstacles.append(group)
+            self.last_obstacle_x = group[-1].x
+            self.next_cactus_distance = random.randint(400, 800)
+
+        if self.obstacles[0][0].x < -CACTUS_WIDTH:
+            self.obstacles.pop(0)
+            self.score += 1
+            if self.score % self.speed_interval == 0 and self.speed < self.max_speed:
+                self.speed += self.speed_increase
+
+        return not any(self.dino.collidelist(group) >= 0 for group in self.obstacles)                       
