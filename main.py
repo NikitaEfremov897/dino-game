@@ -49,3 +49,16 @@ def draw_button(text, x, y, width, height, font):
 def save_highscore(score):
     with open("highscore.txt", "w") as f:
         f.write(str(score))
+
+        class DinoGame:
+    def __init__(self):
+        self.dino_img = load_image("dino.png", (DINO_WIDTH, DINO_HEIGHT))
+        self.cactus_img = load_image("cactus.png", (CACTUS_WIDTH, CACTUS_HEIGHT))
+        self.font = pygame.font.Font(None, 48)
+        self.font_large = pygame.font.Font(None, 72)
+        self.reset_game()
+        self.paused = False
+
+        # Цвета фона
+        self.day_color = (135, 206, 235)   # Голубой
+        self.night_color = (10, 10, 40)    # Тёмно-синий
