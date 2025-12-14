@@ -38,3 +38,14 @@ def draw_button(text, x, y, width, height, font):
     text_rect = label.get_rect(center=(x + width // 2, y + height // 2))
     screen.blit(label, text_rect)
     return rect
+
+    def load_highscore():
+    if os.path.exists("highscore.txt"):
+        with open("highscore.txt", "r") as f:
+            return int(f.read().strip())
+    return 0
+
+
+def save_highscore(score):
+    with open("highscore.txt", "w") as f:
+        f.write(str(score))
