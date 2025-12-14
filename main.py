@@ -153,4 +153,25 @@ def save_highscore(score):
             if self.score % self.speed_interval == 0 and self.speed < self.max_speed:
                 self.speed += self.speed_increase
 
-        return not any(self.dino.collidelist(group) >= 0 for group in self.obstacles)                       
+        return not any(self.dino.collidelist(group) >= 0 for group in self.obstacles)
+            def draw(self):
+        # Чередование фона по счёту
+        phase = (self.score // 30) % 2
+        if phase == 0:
+            screen.fill(self.day_color)
+        else:
+            screen.fill(self.night_color)
+
+        # Анимация фона (для песка и препятствий)
+        for i in range(2):
+            self.bg_x[i] -= self.speed // 2
+            if self.bg_x[i] <= -WIDTH:
+                self.bg_x[i] = WIDTH
+
+        # Песок
+        pygame.draw.rect(screen, SAND_COLOR, (0, GROUND_Y, WIDTH, HEIGHT - GROUND_Y))
+
+        # Кактусы
+        for group in self.obstacles:
+            for cactus in group:
+                screen.blit(self.cactus_img, (cactus.x, cactus.y))                       
