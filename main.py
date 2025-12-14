@@ -83,3 +83,8 @@ def save_highscore(score):
         # Для двойного прыжка
         self.on_ground = True
         self.double_jump_used = False
+
+            def generate_obstacles(self):
+        num = random.choices([1, 2, 3], [0.6, 0.3, 0.1])[0]
+        return [pygame.Rect(self.last_obstacle_x + i * 20, GROUND_Y - CACTUS_HEIGHT,
+                            CACTUS_WIDTH, CACTUS_HEIGHT) for i in range(num)]
