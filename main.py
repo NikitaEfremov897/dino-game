@@ -196,4 +196,18 @@ def save_highscore(score):
             self.draw()
             pygame.display.flip()
             self.clock.tick(60)
-        return self.score                       
+        return self.score 
+
+        def main_menu():
+    game = DinoGame()
+    highscore = load_highscore()
+
+    while True:
+        screen.fill(game.day_color)
+        title = game.font_large.render("Dino", True, BLACK)
+        screen.blit(title, (WIDTH // 2 - title.get_width() // 2, HEIGHT // 4))
+
+        start_btn = draw_button("Начать игру", WIDTH // 2 - 100, HEIGHT // 2, 200, 60, game.font)
+        records_btn = draw_button("Рекорды", WIDTH // 2 - 100, HEIGHT // 2 + 80, 200, 60, game.font)
+
+        pygame.display.flip()                      
