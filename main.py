@@ -226,4 +226,25 @@ def save_highscore(score):
                         return
                     game.reset_game()
                 if records_btn.collidepoint(event.pos):
-                    show_records(highscore, game.font, game.font_large)                      
+                    show_records(highscore, game.font, game.font_large)
+                def game_over_menu(score, highscore, font, font_large):
+    while True:
+        screen.fill((135, 206, 235))  # Голубой фон меню
+
+        score_text = f"ВАШ СЧЁТ: {score}"
+        highscore_text = f"РЕКОРД: {highscore}"
+
+        score_surface = font_large.render(score_text, True, BLACK)
+        highscore_surface = font_large.render(highscore_text, True, BLACK)
+
+        screen.blit(score_surface, (WIDTH // 2 - score_surface.get_width() // 2, HEIGHT // 4))
+        screen.blit(highscore_surface, (WIDTH // 2 - highscore_surface.get_width() // 2, HEIGHT // 4 + 80))
+
+        restart_btn = draw_button("ЕЩЁ РАЗ", WIDTH // 2 - 120, HEIGHT // 2 + 100, 240, 70, font)
+        pygame.display.flip()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                return False
+            if event.type == pygame.MOUSEBUTTONDOWN and restart_btn.collidepoint(event.pos):
+                return True                      
