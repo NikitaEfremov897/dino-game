@@ -88,3 +88,30 @@ def save_highscore(score):
         num = random.choices([1, 2, 3], [0.6, 0.3, 0.1])[0]
         return [pygame.Rect(self.last_obstacle_x + i * 20, GROUND_Y - CACTUS_HEIGHT,
                             CACTUS_WIDTH, CACTUS_HEIGHT) for i in range(num)]
+
+         def should_jump(self):
+        for group in self.obstacles:
+            for cactus in group:
+                distance = cactus.x - (self.dino.x + DINO_WIDTH)
+                if (JUMP_DISTANCE_MIN <= distance <= JUMP_DISTANCE_MAX and
+                        self.dino.y >= GROUND_Y - DINO_HEIGHT):
+                    return True
+        return False
+
+    def handle_events(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                return False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    if self.on_ground:
+                        self.velocity = self.jump_power
+                        self.on_ground = False
+                    elif not self.double_jump_used:
+                        self.velocity = self.jump_power
+                        self.double_jump_used = True
+                if event.key == pygame.K_q:
+                    self.auto_jump = not self.auto_jump
+                if event.key == pygame.K_p:  # Пауза
+                    self.paused = not self.paused
+        return True                       
