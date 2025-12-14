@@ -62,3 +62,24 @@ def save_highscore(score):
         # Цвета фона
         self.day_color = (135, 206, 235)   # Голубой
         self.night_color = (10, 10, 40)    # Тёмно-синий
+
+            def reset_game(self):
+        self.dino = pygame.Rect(100, GROUND_Y - DINO_HEIGHT, DINO_WIDTH, DINO_HEIGHT)
+        self.velocity = 0
+        self.speed = 6
+        self.last_obstacle_x = WIDTH
+        self.next_cactus_distance = random.randint(400, 800)
+        self.obstacles = [self.generate_obstacles()]
+        self.score = 0
+        self.auto_jump = False
+        self.clock = pygame.time.Clock()
+        self.jump_power = -22.5
+        self.gravity = 1.5
+        self.max_speed = 10
+        self.speed_interval = 12
+        self.speed_increase = 0.2
+        self.bg_x = [0, WIDTH]
+
+        # Для двойного прыжка
+        self.on_ground = True
+        self.double_jump_used = False
