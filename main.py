@@ -186,4 +186,14 @@ def save_highscore(score):
         # Пауза
         if self.paused:
             pause_text = self.font_large.render("ПАУЗА", True, BLACK)
-            screen.blit(pause_text, (WIDTH // 2 - pause_text.get_width() // 2, HEIGHT // 2))                       
+            screen.blit(pause_text, (WIDTH // 2 - pause_text.get_width() // 2, HEIGHT // 2))
+
+            def run(self):
+        running = True
+        while running:
+            running = self.handle_events()
+            running = running and self.update()
+            self.draw()
+            pygame.display.flip()
+            self.clock.tick(60)
+        return self.score                       
