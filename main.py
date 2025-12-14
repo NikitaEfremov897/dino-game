@@ -247,4 +247,18 @@ def save_highscore(score):
             if event.type == pygame.QUIT:
                 return False
             if event.type == pygame.MOUSEBUTTONDOWN and restart_btn.collidepoint(event.pos):
-                return True                      
+                return True
+        def show_records(highscore, font, font_large):
+    while True:
+        screen.fill((135, 206, 235))
+        draw_text("РЕКОРДЫ", WIDTH // 2 - 100, HEIGHT // 4, font_large)
+        draw_text(f"ЛУЧШИЙ: {highscore}", WIDTH // 2 - 100, HEIGHT // 3, font)
+
+        back_btn = draw_button("НАЗАД", WIDTH // 2 - 100, HEIGHT // 2 + 100, 200, 60, font)
+        pygame.display.flip()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                return
+            if event.type == pygame.MOUSEBUTTONDOWN and back_btn.collidepoint(event.pos):
+                return                      
