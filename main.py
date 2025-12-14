@@ -174,4 +174,16 @@ def save_highscore(score):
         # Кактусы
         for group in self.obstacles:
             for cactus in group:
-                screen.blit(self.cactus_img, (cactus.x, cactus.y))                       
+                screen.blit(self.cactus_img, (cactus.x, cactus.y))
+                    # Дино
+        screen.blit(self.dino_img, (self.dino.x, self.dino.y))
+
+        # Счёт и режим
+        draw_text(f"СЧЁТ: {self.score}", 20, 20, self.font)
+        mode = "АВТО: ВКЛ (Q)" if self.auto_jump else "АВТО: ВЫКЛ (Q)"
+        draw_text(mode, WIDTH - 320, 20, self.font)
+
+        # Пауза
+        if self.paused:
+            pause_text = self.font_large.render("ПАУЗА", True, BLACK)
+            screen.blit(pause_text, (WIDTH // 2 - pause_text.get_width() // 2, HEIGHT // 2))                       
