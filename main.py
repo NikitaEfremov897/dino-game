@@ -184,6 +184,13 @@ pygame.draw.ellipse(screen, (50, 50, 50),
 
         # Счёт и режим
         draw_text(f"СЧЁТ: {self.score}", 20, 20, self.font)
+        # draw_text(f"СЧЁТ: {self.score}", ...)
+if self.score >= 30 and (self.score // 30) % 2 == 1:
+    mode_label = self.font.render("НОЧЬ", True, (200, 200, 255))
+    screen.blit(mode_label, (WIDTH - 120, 60))
+else:
+    mode_label = self.font.render("ДЕНЬ", True, (255, 255, 200))
+    screen.blit(mode_label, (WIDTH - 120, 60))
         mode = "АВТО: ВКЛ (Q)" if self.auto_jump else "АВТО: ВЫКЛ (Q)"
         draw_text(mode, WIDTH - 320, 20, self.font)
 
