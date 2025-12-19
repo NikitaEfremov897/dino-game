@@ -33,7 +33,7 @@ def draw_text(text, x, y, font, color=BLACK):
 
 def draw_button(text, x, y, width, height, font):
     rect = pygame.Rect(x, y, width, height)
-    pygame.draw.rect(screen, BLACK, rect, 2)
+    pygame.draw.rect(screen, BLACK, rect, width=2, border_radius=8)
     label = font.render(text, True, BLACK)
     text_rect = label.get_rect(center=(x + width // 2, y + height // 2))
     screen.blit(label, text_rect)
