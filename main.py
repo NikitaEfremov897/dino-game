@@ -176,6 +176,10 @@ def save_highscore(score):
             for cactus in group:
                 screen.blit(self.cactus_img, (cactus.x, cactus.y))
                     # Дино
+                    # screen.blit(self.dino_img, ...)
+pygame.draw.ellipse(screen, (50, 50, 50), 
+                    (self.dino.x + 10, self.dino.y + DINO_HEIGHT - 5, 
+                     DINO_WIDTH - 20, 5))
         screen.blit(self.dino_img, (self.dino.x, self.dino.y))
 
         # Счёт и режим
