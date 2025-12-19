@@ -209,6 +209,9 @@ def save_highscore(score):
 
         start_btn = draw_button("Начать игру", WIDTH // 2 - 100, HEIGHT // 2, 200, 60, game.font)
         records_btn = draw_button("Рекорды", WIDTH // 2 - 100, HEIGHT // 2 + 80, 200, 60, game.font)
+small_font = pygame.font.Font(None, 36)
+hint = small_font.render("Пробел — прыжок | Q — авто | P — пауза", True, BLACK)
+screen.blit(hint, (WIDTH // 2 - hint.get_width() // 2, HEIGHT - 50))
 
         pygame.display.flip()
 
